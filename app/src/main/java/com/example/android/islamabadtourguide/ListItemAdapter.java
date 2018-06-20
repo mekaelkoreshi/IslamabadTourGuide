@@ -22,6 +22,8 @@ import java.util.ArrayList;
 
 public class ListItemAdapter extends ArrayAdapter<ListItem> {
 
+    private static final String LOG_TAG = ListItemAdapter.class.getSimpleName();
+
     public ListItemAdapter(Context context, ArrayList<ListItem> listItems) {
         super(context, 0, listItems);
     }
@@ -29,7 +31,7 @@ public class ListItemAdapter extends ArrayAdapter<ListItem> {
     @NonNull
     @Override
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
-        return super.getView(position, convertView, parent);
+        super.getView(position, convertView, parent);
 
         View listItemView = convertView;
         if (listItemView == null) {
@@ -38,10 +40,13 @@ public class ListItemAdapter extends ArrayAdapter<ListItem> {
         }
 
         ListItem currentListItem = getItem(position);
+
         TextView nameTextView = (TextView) listItemView.findViewById(R.id.name);
         nameTextView.setText(currentListItem.getName());
+
         TextView typeTextView = (TextView) listItemView.findViewById(R.id.type);
         typeTextView.setText(currentListItem.getType());
+
         ImageView imageView = (ImageView) listItemView.findViewById(R.id.image);
         if (currentListItem.hasImage()) {
             // set this text on the ImageView
